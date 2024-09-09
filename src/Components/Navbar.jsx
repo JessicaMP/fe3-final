@@ -5,12 +5,11 @@ import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 import IconButton from '@mui/material/IconButton';
-import NightlightRound from '@mui/icons-material/NightlightRound';//Este componente debera ser estilado como "dark" o "light" dependiendo del theme del Context
+import NightlightRound from '@mui/icons-material/NightlightRound';
 import { Link } from "react-router-dom";
 import { routes } from "../utils/routes";
-
+//Este componente debera ser estilado como "dark" o "light" dependiendo del theme del Context
 const Navbar = () => {
-
   return (
   <Box sx={{
     flexGrow: 1,
