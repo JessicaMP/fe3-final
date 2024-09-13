@@ -1,26 +1,35 @@
 import axios from "axios";
-import { createContext, useContext, useState, useEffect } from "react";
+import { createContext, useContext, useReducer, useEffect } from "react";
+import { reducer } from "../reducers/reducer";
 
-const DentistStates = createContext();
+const CharStates = createContext();
+const favs = JSON.parse(localStorage.getItem("favs")) || [];
 
-const DentistsContext = ({ children }) => {
-  const [dentists, setDentists] = useState([]);
+const initialState = {
+  list: [],
+  favs,
+  theme: true,
+};
+
+const Context = ({ children }) => {
+  // const [dentists, setDentists] = useState([]);
+  const [state, dispatch] = useReducer(reducer, initialState);
 
   const url = "https://jsonplaceholder.typicode.com/users";
   useEffect(() => {
     const fetchData = async () => {
       const {data} = await axios(url)
-      setDentists(data);
+      dispatch({type: "GET_CHARS", payload: data });
     }
     fetchData();
   }, []);
 
   return (
-    <DentistStates.Provider value={{ dentists }}>
+    <CharStates.Provider value={{ ...state, dispatch }}>
       {children}
-    </DentistStates.Provider>
+    </CharStates.Provider>
   );
 };
-export default DentistsContext;
+export default Context;
 
-export const useDentistStates = () => useContext(DentistStates);
+export const useCharStates = () => useContext(CharStates);

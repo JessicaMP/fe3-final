@@ -1,6 +1,7 @@
 import { Route, Routes } from "react-router-dom";
 import { routes } from "./utils/routes";
 import Home from "./Routes/Home";
+import Detail from "./Routes/Detail";
 import Footer from "./Components/Footer";
 import Navbar from "./Components/Navbar";
 
@@ -11,6 +12,7 @@ function App() {
         <Navbar />
           <Routes>
             <Route path={routes.home} element={<Home />} />
+            <Route path="/dentista/:id" element={<Detail />} />
           </Routes>
         <Footer />
       </div>

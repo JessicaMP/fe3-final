@@ -1,18 +1,21 @@
 import React from 'react'
-import { useDentistStates } from "../Context/DentistsContext";
+import { useCharStates } from "../Context/DentistsContext";
 import Card from '../Components/Card'
+import { Link } from "react-router-dom";
 
 //Este componente debera ser estilado como "dark" o "light" dependiendo del theme del Context
 
 const Home = () => {
-  const { dentists } = useDentistStates();
-  console.log(dentists);
+  const {list} = useCharStates();
+
   return (
     <main className="" >
       <h1>Home</h1>
       <div className='card-grid'>
-        {dentists.map((dentist) => (
-          <Card key={dentist.id} item={dentist} />
+        {list.map((dentist) => (
+          <Link to={"/dentista/" + dentist.id } key={dentist.id}>
+            <Card  item={dentist} />
+          </Link>
         ))}
       </div>
     </main>
