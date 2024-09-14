@@ -12,7 +12,6 @@ const Card = ({ item }) => {
   const isFavorite = state.favs.find((fav) => fav.id === item.id);
 
   const addFav = () => {
-    // Aqui iria la logica para agregar la Card en el localStorage
     dispatch({ type: isFavorite ? "REMOVE_FAV" : "ADD_FAV", payload: item });
   }
 

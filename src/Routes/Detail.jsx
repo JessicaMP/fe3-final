@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import ApiService from "../services/api";
 import { useParams } from 'react-router-dom';
-import { useTheme } from '@mui/material/styles';
 import {
   Container,
   Card,
@@ -40,8 +39,6 @@ const Detail = () => {
     }
     fetchData();
   }, [id]);
-  const theme = useTheme();
-
 
   // Consumiendo el parametro dinamico de la URL deberan hacer un fetch a un user en especifico
 
