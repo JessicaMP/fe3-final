@@ -3,6 +3,7 @@ import { routes } from "./utils/routes";
 import Home from "./Routes/Home";
 import Detail from "./Routes/Detail";
 import Favs from "./Routes/Favs";
+import Contact from "./Routes/Contact";
 import Footer from "./Components/Footer";
 import Navbar from "./Components/Navbar";
 
@@ -14,6 +15,7 @@ function App() {
           <Routes>
             <Route path={routes.home} element={<Home />} />
             <Route path="/dentista/:id" element={<Detail />} />
+            <Route path={routes.contact} element={<Contact />} />
             <Route path={routes.fav} element={<Favs />} />
           </Routes>
         <Footer />

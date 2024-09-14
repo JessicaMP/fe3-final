@@ -46,7 +46,6 @@ const Navbar = () => {
                 sx={{ mr: 2 }}
               >
                 {state.theme ? <NightlightRound /> : <Brightness5Icon />}
-
               </IconButton>
             </div>
           </Toolbar>

@@ -8,7 +8,7 @@ const favs = JSON.parse(localStorage.getItem("favs")) || [];
 const initialState = {
   list: [],
   favs,
-  theme: true,
+  theme: false,
 };
 
 const Context = ({ children }) => {
