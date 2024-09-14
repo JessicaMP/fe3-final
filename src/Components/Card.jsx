@@ -1,14 +1,19 @@
 import React from "react";
 import CardItem from '@mui/material/Card';
-import CardContent from '@mui/material/CardContent';
-import CardMedia from '@mui/material/CardMedia';
-import Typography from '@mui/material/Typography';
-import CardActionArea from '@mui/material/CardActionArea';
+import {CardContent, CardMedia, Typography, CardActionArea, CardActions, IconButton} from '@mui/material';
+import FavoriteIcon from '@mui/icons-material/Favorite';
+import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
+import { Link } from "react-router-dom";
+import { useCharStates } from "../Context/Context";
 
 const Card = ({ item }) => {
+  const { state, dispatch } = useCharStates();
   const { name, username, id } = item
-  const addFav = ()=>{
+  const isFavorite = state.favs.find((fav) => fav.id === item.id);
+
+  const addFav = () => {
     // Aqui iria la logica para agregar la Card en el localStorage
+    dispatch({ type: isFavorite ? "REMOVE_FAV" : "ADD_FAV", payload: item });
   }
 
   return (
@@ -19,23 +24,35 @@ const Card = ({ item }) => {
 
         {/* Ademas deberan integrar la logica para guardar cada Card en el localStorage */}
         <CardItem sx={{ width: "100%", height: "100%" }}>
-          <CardActionArea >
-            <CardMedia
-              component="img"
-              height="140"
-              image="/images/doctor.jpg"
-              alt={name}
-            />
-            <CardContent>
-              <Typography gutterBottom variant="h5" component="div">
-                {name}
-              </Typography>
-              <Typography variant="body2" sx={{ color: 'text.secondary' }}>
-                {username} ({id})
-              </Typography>
-              {/* <button onClick={addFav} className="favButton">Add fav</button> */}
-            </CardContent>
-          </CardActionArea>
+          <Link to={"/dentista/" + id }>
+            <CardActionArea>
+              <CardMedia
+                component="img"
+                height="140"
+                image="/images/doctor.jpg"
+                alt={name}
+              />
+              <CardContent>
+                <Typography gutterBottom variant="h5" component="div">
+                  {name}
+                </Typography>
+                <Typography variant="body2" sx={{ color: 'text.secondary' }}>
+                  {username} ({id})
+                </Typography>
+              </CardContent>
+            </CardActionArea>
+          </Link>
+          <CardActions
+            onClick={addFav}
+            direction="row"
+            sx={{
+              justifyContent: "center",
+              alignItems: "center",
+            }}>
+            <IconButton color="primary" aria-label="add to shopping cart">
+              {isFavorite ? <FavoriteIcon /> : <FavoriteBorderIcon />}
+            </IconButton>
+          </CardActions>
         </CardItem>
 
     </div>

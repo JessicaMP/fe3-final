@@ -23,7 +23,7 @@ const Context = ({ children }) => {
   }, []);
 
   return (
-    <CharStates.Provider value={{ ...state, dispatch }}>
+    <CharStates.Provider value={{ state, dispatch }}>
       {children}
     </CharStates.Provider>
   );
